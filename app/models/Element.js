@@ -10,6 +10,7 @@ define([
   			$.ajax({
             url:options.url+"data.json",
             success: function(data){
+            	console.log(data);
             	for (var key in data ){
 				   that.set(key, data[key]);
 				}

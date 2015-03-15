@@ -5,7 +5,7 @@ define([
   'text!templates/tool.html',
   'models/Element'
 ], function($, _, Backbone, toolTemplate, Element){
-	 var ToolSetView = Backbone.View.extend({
+	 var ToolView = Backbone.View.extend({
 	 	el: $('#toolset_list'),
 	 	events:{
 	 		"click":"toolSelected"
@@ -32,6 +32,6 @@ define([
 
 	    }
 	 });
-	 return ToolSetView;
+	 return ToolView;
 });
 

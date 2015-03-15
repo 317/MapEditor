@@ -4,7 +4,9 @@ define([
   'backbone',
   'text!templates/toolset.html',
   'views/ToolView',
-], function($, _, Backbone, toolsetTemplate, ToolView){
+  '../elements/elements'
+], function($, _, Backbone, toolsetTemplate, ToolView, elements){
+  console.log(elements);
   var ToolSetView = Backbone.View.extend({
     
     el: $('#toolset'),
@@ -19,21 +21,11 @@ define([
 
     initialize: function(options){
       var that = this;
-      var url = "elements/";
-      $.ajax({
-        url: url,
-        success: function(data){
-           $(data).find("a:contains(elt_)").each(function(){
-              that.nbTools++;
-           });
-           that.render();
-           var n = 0;
-            $(data).find("a:contains(elt_)").each(function(){
-              new ToolView({url:url+$(this).attr("href"), el:$("#tool_"+n)});
-              n++;
-           });
-        }
-      });
+      that.nbTools = elements.length;
+      this.render();
+      for(var i=0; i<that.nbTools; i++){
+        new ToolView({el:$("#tool_"+i), url:"app/elements/"+elements[i]+"/"});
+      }
     },
 
     startMoveToolset:function(e){
